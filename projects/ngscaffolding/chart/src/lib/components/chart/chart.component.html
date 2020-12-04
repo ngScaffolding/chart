@@ -1,0 +1,17 @@
+<div *ngIf="loadingData" class="loading-indicator">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+
+<div *ngIf="loadingError" class="spinnerHolder">
+    <span aria-hidden="true" class="ui-icon-error"></span>
+  <h2>{{'Loading Error' | translate}}</h2>
+</div>
+
+<highcharts-chart
+  *ngIf="!loadingError && buildHighChartOptions"
+  [Highcharts]="Highcharts"
+  [options]="buildHighChartOptions"
+  (chartInstance)="logChartInstance($event)"
+  [(update)]="updateChartFlag"
+  style="width: 100%; height: 100%; display: block;">
+</highcharts-chart>
